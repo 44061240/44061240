@@ -1,16 +1,13 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 import pandas as pd
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    df = pd.read_excel("data.xlsx")
+    table_html = df.to_html(classes="data-table", index=False)
+    return render_template("index.html", table=table_html)
 
-@app.route('/data')
-def get_data():
-    df = pd.read_excel('data.xlsx')
-    return jsonify(df.to_dict(orient='records'))
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0", port=10000)
