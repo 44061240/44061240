@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>44061240 - Реальний час для змін</title>
+    <title>44061240 - Дані в реальному часі</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-   </head>
+</head>
 <body>
-    <h1>Таблиця з Excel у реальному часі</h1>
-    <div>{{ table|safe }}</div>
+    <h1>Дані в реальному часі</h1>
+
+    {% if data %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    {% for col in data[0] %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data[1:] %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Немає даних для відображення.</p>
+    {% endif %}
+
+    <div class="footer">
+        <p>Оновлення автоматично при перезавантаженні сторінки.</p>
+    </div>
 </body>
 </html>
