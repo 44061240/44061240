@@ -6,33 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Дані в реальному часі</h1>
+    <h1> Реальні Дані в реальному часі</h1>
 
-    {% if data %}
-        <table class="data-table">
-            <thead>
-                <tr>
-                    {% for col in data[0] %}
-                        <th>{{ col }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in data[1:] %}
-                    <tr>
-                        {% for cell in row %}
-                            <td>{{ cell }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Немає даних для відображення.</p>
-    {% endif %}
-
-    <div class="footer">
-        <p>Оновлення автоматично при перезавантаженні сторінки.</p>
-    </div>
+   
 </body>
 </html>
